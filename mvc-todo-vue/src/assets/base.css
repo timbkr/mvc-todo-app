@@ -1,54 +1,56 @@
-/* color palette from <https://github.com/vuejs/theme> */
+@font-face {
+  font-family: JosefinSans-reg;
+  font-weight: 400;
+
+  src: url('../assets/fonts/JosefinSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: JosefinSans-bold;
+  font-weight: 700;
+  src: url('../assets/fonts/JosefinSans-Bold.ttf');
+}
+
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  --darkM-bg: hsl(207, 26%, 17%);
+  --darkM-elements: hsl(209, 23%, 22%);
+  --lightM-text: hsl(200, 15%, 8%);
+  --lightM-input: hsl(0, 0%, 52%);
+  --lightM-bg: hsl(0, 0%, 91%);
+  --White: hsl(0, 0%, 100%);
+  --White-opac05: rgba(255,255,255,0.5);
+  --Black: black;
+  --Black-opac05: rgba(0,0,0,0.5);
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+  /* --font-light: NunitoSans-light; */
+  --font-reg: JosefinSans-reg;
+  --font-bold: JosefinSans-bold;
 
-  --vt-c-indigo: #2c3e50;
-
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --color-bg: var(--darkM-bg);
+  --color-elements: var(--darkM-elements);
+  --color-text: var(--White);
+  --color-text-opac-0-5: var(var(--White-opac05))
 }
 
 /* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
 
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+body.lightMode {
+  --color-bg: var(--lightM-bg);
+  --color-elements: var(--White);
+  --color-text: var(--Black);
+  --color-text-opac-0-5: var(var(--Black-opac05))
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
   }
 }
+
+/** 
+  ------------- base Styles ------------- 
+*/
 
 *,
 *::before,
@@ -61,6 +63,34 @@
 
 body {
   min-height: 100vh;
+  font-family: NunitoSans-light;
   color: var(--color-text);
-  background: var(--color-background);
+  background: var(--color-bg);
+}
+
+
+button,
+textarea,
+select,
+input {
+  font: inherit;
+  color: var(--color-text);
+}
+
+button{
+  cursor: pointer;
+}
+button:hover, button:focus{
+  opacity: 0.75;
+}
+img {
+  max-width: 100%;
+}
+
+h1 {
+  /* margin: 0; */
+  /* padding: 0.67em; */
+  /* text-align: center; */
+  /* font-size: 2rem; */
+  font-family: var(--font-bold);
 }
