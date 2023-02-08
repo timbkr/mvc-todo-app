@@ -1,0 +1,20 @@
+<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
+<template>
+  <header>
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <h1>ToDo-App</h1>
+    <div class="wrapper">
+      <HelloWorld  />
+    </div>
+  </header>
+
+  <main>
+  </main>
+</template>
+
+<style scoped>
+
+</style>
