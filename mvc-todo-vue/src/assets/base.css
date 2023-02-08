@@ -18,9 +18,15 @@
   --lightM-input: hsl(0, 0%, 52%);
   --lightM-bg: hsl(0, 0%, 91%);
   --White: hsl(0, 0%, 100%);
-  --White-opac05: rgba(255,255,255,0.5);
+  --White-opac03: rgba(255,255,255,0.3);
   --Black: black;
-  --Black-opac05: rgba(0,0,0,0.5);
+  --Black-opac03: rgba(0,0,0,0.3);
+
+  --dark-text-active: hsl(220, 98%, 61%);
+  --dark-text-hover: hsl(236, 33%, 92%);
+  --light-text-active: hsl(220, 98%, 61%);
+  --light-text-hover: hsl(236, 33%, 92%);
+
 
   /* --font-light: NunitoSans-light; */
   --font-reg: JosefinSans-reg;
@@ -29,7 +35,9 @@
   --color-bg: var(--darkM-bg);
   --color-elements: var(--darkM-elements);
   --color-text: var(--White);
-  --color-text-opac-0-5: var(var(--White-opac05))
+  --color-text-opac-0-5: var(--White-opac03);
+  --color-text-active: var(--dark-text-active);
+  --color-text-hover: var(--dark-text-hover);
 }
 
 /* semantic color variables for this project */
@@ -39,7 +47,10 @@ body.lightMode {
   --color-bg: var(--lightM-bg);
   --color-elements: var(--White);
   --color-text: var(--Black);
-  --color-text-opac-0-5: var(var(--Black-opac05))
+  --color-text-opac-0-5: var(--Black-opac03);
+  --color-text-active: var(--light-text-active);
+  --color-text-hover: var(--light-text-hover);
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,9 +74,10 @@ body.lightMode {
 
 body {
   min-height: 100vh;
-  font-family: NunitoSans-light;
+  font-family: var(--font-reg);
   color: var(--color-text);
   background: var(--color-bg);
+  font-size: 1.125rem;
 }
 
 
