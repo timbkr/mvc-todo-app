@@ -92,8 +92,9 @@ export default {
 
 <template>
     <div class="todoItem content-section">
-        <div @click="toggleInputChecked" class="circle circleOuter" tabindex="0" @keypress.enter="inputChecked = !inputChecked"
-            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}" 
+        <div @click="toggleInputChecked" class="circle circleOuter" tabindex="0"
+            @keypress.enter="inputChecked = !inputChecked"
+            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}"
             @mouseover="inputCircleHover = true" @mouseout="inputCircleHover = false">
             <div class="circle innerCircle" :class="{ circleInnerHover: inputCircleHover }">
                 <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
@@ -102,12 +103,14 @@ export default {
         <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
             @keydown.esc="toggleInputChecked" placeholder="Create a new todo..">
         <!-- <img style="width: 30px; cursor: pointer" @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/icon-back.svg" alt=""> -->
-        <img class="deleteInputIMG"  @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/delete-left.png" alt="">
+        <img class="deleteInputIMG" @click="inputText = ''" @keypress.enter="inputText = ''" tabindex="0"
+            src="../assets/icons/delete-left.png" alt="">
     </div>
 
     <div class="todo-list content-section">
         <div class="todoItem" v-for="(item, index) in filterTodos" :key="item.id">
-            <div class="circle circleOuter" tabindex="0" @keypress.enter="checkTodo(item.id)" @mouseover="hoverCircleIndex = index" @mouseout="hoverCircleIndex = -1"
+            <div class="circle circleOuter" tabindex="0" @keypress.enter="checkTodo(item.id)"
+                @mouseover="hoverCircleIndex = index" @mouseout="hoverCircleIndex = -1"
                 :class="{ circleOuterHover: hoverCircleIndex === index }">
                 <div @click="checkTodo(item.id)" class="circle innerCircle"
                     :class="{ circleActive: item.checked, circleInnerHover: hoverCircleIndex === index }">
@@ -147,13 +150,6 @@ export default {
     margin: 1em 0;
 }
 
-.deleteInputIMG{
-    width: 30px; 
-    cursor: pointer;
-}
-.deleteInputIMG:hover{
-    opacity: 0.75;
-}
 .todoItem {
     display: flex;
     align-items: center;
@@ -164,6 +160,25 @@ export default {
 
 .todoItem:first-child {
     border: 0;
+}
+
+input[type=text] {
+    background-color: var(--color-elements);
+    border: 0;
+    flex: 1;
+}
+
+input[type=text]:focus {
+    outline: transparent;
+}
+
+.deleteInputIMG {
+    width: 30px;
+    cursor: pointer;
+}
+
+.deleteInputIMG:hover {
+    opacity: 0.75;
 }
 
 .todoItem p {
@@ -241,16 +256,6 @@ export default {
 
 .checkImg {
     width: 100%
-}
-
-input[type=text] {
-    background-color: var(--color-elements);
-    border: 0;
-    flex: 1;
-}
-
-input[type=text]:focus {
-    outline: transparent;
 }
 
 .lastTodoRow {

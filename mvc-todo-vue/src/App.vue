@@ -31,7 +31,6 @@ export default{
   mounted(){
     //set Light / Darkmode to saved mode
     if(this.getLocalStorage() !== this.isDarkModeActive) this.toggleDarkMode();
-    console.log(this.isDarkModeActive);
   }
 }
 </script>
@@ -43,13 +42,11 @@ export default{
       <img v-if="!isDarkModeActive" src="./assets/icons/icon-sun.svg" alt="" @click="toggleDarkMode">
       <img v-if="isDarkModeActive" src="./assets/icons/icon-moon.svg" alt="" @click="toggleDarkMode">
     </div>
-
   </header>
 
   <main>
     <div class="container">
       <ToDoList />
-
     </div>
   </main>
 </template>
