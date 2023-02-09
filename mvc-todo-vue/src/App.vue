@@ -58,5 +58,9 @@ export default{
 .heading {
   justify-content: space-between;
   padding: 2em 0;
+  align-items: center;
+}
+.heading img{
+  height: 100%;
 }
 </style>
