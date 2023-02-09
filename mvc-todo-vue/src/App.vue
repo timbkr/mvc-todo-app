@@ -32,7 +32,6 @@ export default{
     //set Light / Darkmode to saved mode
     if(this.getLocalStorage() !== this.isDarkModeActive) this.toggleDarkMode();
     console.log(this.isDarkModeActive);
-    
   }
 }
 </script>
@@ -41,8 +40,8 @@ export default{
   <header>
     <div class="row container heading">
       <h1>ToDo-App</h1>
-      <img src="./assets/icons/icon-sun.svg" alt="" @click="toggleDarkMode">
-      <!-- <img src="./assets/icons/icon-sun.svg" alt=""> -->
+      <img v-if="!isDarkModeActive" src="./assets/icons/icon-sun.svg" alt="" @click="toggleDarkMode">
+      <img v-if="isDarkModeActive" src="./assets/icons/icon-moon.svg" alt="" @click="toggleDarkMode">
     </div>
 
   </header>
