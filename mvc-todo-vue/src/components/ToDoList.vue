@@ -92,20 +92,21 @@ export default {
 
 <template>
     <div class="todoItem content-section">
-        <div @click="toggleInputChecked" class="circle circleOuter"
-            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}"
+        <div @click="toggleInputChecked" class="circle circleOuter" tabindex="0" @keypress.enter="inputChecked = !inputChecked"
+            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}" 
             @mouseover="inputCircleHover = true" @mouseout="inputCircleHover = false">
             <div class="circle innerCircle" :class="{ circleInnerHover: inputCircleHover }">
                 <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
             </div>
         </div>
         <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
-            @keydown.esc="toggleInputChecked" placeholder="type ToDo here..">
+            @keydown.esc="toggleInputChecked" placeholder="Create a new todo..">
+        <img style="width: 30px; cursor: pointer" @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/icon-back.svg" alt="">
     </div>
 
     <div class="todo-list content-section">
         <div class="todoItem" v-for="(item, index) in filterTodos" :key="item.id">
-            <div class="circle circleOuter" @mouseover="hoverCircleIndex = index" @mouseout="hoverCircleIndex = -1"
+            <div class="circle circleOuter" tabindex="0" @keypress.enter="checkTodo(item.id)" @mouseover="hoverCircleIndex = index" @mouseout="hoverCircleIndex = -1"
                 :class="{ circleOuterHover: hoverCircleIndex === index }">
                 <div @click="checkTodo(item.id)" class="circle innerCircle"
                     :class="{ circleActive: item.checked, circleInnerHover: hoverCircleIndex === index }">
@@ -118,13 +119,13 @@ export default {
                     alt="" /></button>
         </div>
 
-        <div class="todoItem lastTodoRow">
+        <div class="todoItem lastTodoRow font-size16">
             <div>{{ filterTodos.length }} items left</div>
             <button class="clearBTN" @click="clearCompletedTodos">Clear Completed</button>
         </div>
     </div>
 
-    <div class="todoFilterRow content-section">
+    <div class="todoFilterRow content-section font-size16">
         <button @click="setFilter(0)" :class="{ filterActive: !filterActive && !filterCompleted }">All</button>
         <button @click="setFilter(1)" :class="{ filterActive: filterActive }">Active</button>
         <button @click="setFilter(2)" :class="{ filterActive: filterCompleted }">Completed</button>
@@ -132,6 +133,10 @@ export default {
 </template>
 
 <style scoped>
+.font-size16 {
+    font-size: 1rem;
+}
+
 .content-section {
     background-color: var(--color-elements);
     border-radius: .5em;
