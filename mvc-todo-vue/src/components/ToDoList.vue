@@ -100,7 +100,7 @@ export default {
                 </div>
             </div>
             <p @click="checkTodo(item.id)" :class="{ completed: item.checked }" @mouseover="hoverCircleIndex = index"
-                @mouseout="hoverCircleIndex = -1">{{ item.text }} </p>
+                @mouseout="hoverCircleIndex = -1" class="todoItemText">{{ item.text }}</p>
             <button class="deleteBTN" @click="deleteTodo(item.id)"><img src="../assets/icons/icon-cross.svg"
                     alt="" /></button>
         </div>
@@ -177,16 +177,17 @@ export default {
     bottom: 0;
     text-align: center;
 }
-.circle.circleActive .circleInnerHover{
+
+.circle.circleActive .circleInnerHover {
     background-color: transparent;
 }
 
-/* .circleOuter:hover {
+/* .circleOuter:hover, .todoItemText:hover ~ .circleOuter{
     background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
     border: 0;
 }
 
-.innerCircle:hover {
+.innerCircle:hover, .todoItemText:hover ~ .circleOuter > .innerCircle{
     background-color: var(--color-elements);
     height: 22px;
     width: 22px;
