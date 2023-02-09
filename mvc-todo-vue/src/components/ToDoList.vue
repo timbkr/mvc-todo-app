@@ -53,6 +53,11 @@ export default {
             if (mode === 0) return // 'all'
             else if (mode === 1) this.filterActive = true; //'active'
             else if (mode === 2) this.filterCompleted = true; //'completed' 
+        },
+        toggleInputChecked(){ this.inputChecked = !this.inputChecked },
+        clearCompletedTodos(){
+            let activeTodos = this.todos.filter( elem => elem.checked !== true)
+            this.todos = activeTodos;
         }
     },
     computed: {
@@ -68,16 +73,16 @@ export default {
 </script>
 
 <template>
-    <div class="todoItem content-section">
-        <div @click="inputChecked = !inputChecked" class="circle" :class="{circleActive: inputChecked}">
+    <div class="todoItem content-section" >
+        <div @click="toggleInputChecked"  class="circle" :class="{circleActive: inputChecked}">
             <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
         </div>
-        <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
+        <input  type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)" @keydown.esc="toggleInputChecked"
             placeholder="type ToDo here..">
     </div>
 
     <div class="todo-list content-section">
-        <div class="todoItem" v-for="(item, index) in filterTodos">
+        <div class="todoItem" v-for="(item, index) in filterTodos" :key="item.id">
             <div @click="checkTodo(item.id)" class="circle" :class="{ circleActive: item.checked }">
                 <img v-show="item.checked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
             </div>
@@ -87,7 +92,7 @@ export default {
 
         <div class="todoItem lastTodoRow">
             <div>{{ filterTodos.length }} items left</div>
-            <button class="clearBTN">Clear Completed</button>
+            <button class="clearBTN" @click="clearCompletedTodos">Clear Completed</button>
         </div>
     </div>
 
