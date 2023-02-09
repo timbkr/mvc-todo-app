@@ -20,6 +20,8 @@ export default {
             inputChecked: false,
             filterActive: false,
             filterCompleted: false,
+            inputCircleHover: false,
+            hoverCircleIndex: -1,
         }
     },
     methods: {
@@ -43,6 +45,8 @@ export default {
             this.todos.splice(index, 1)
         },
         checkTodo(id: number) {
+            console.log("CHECK");
+
             const elem = this.todos.find(elem => elem.id === id)
             const index = this.todos.indexOf(elem!);
             this.todos[index].checked = !this.todos[index].checked;
@@ -75,8 +79,12 @@ export default {
 
 <template>
     <div class="todoItem content-section">
-        <div @click="toggleInputChecked" class="circle" :class="{circleActive: inputChecked}">
-            <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
+        <div @click="toggleInputChecked" class="circle circleOuter"
+            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}"
+            @mouseover="inputCircleHover = true" @mouseout="inputCircleHover = false">
+            <div class="circle innerCircle" :class="{ circleInnerHover: inputCircleHover }">
+                <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
+            </div>
         </div>
         <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
             @keydown.esc="toggleInputChecked" placeholder="type ToDo here..">
@@ -84,11 +92,17 @@ export default {
 
     <div class="todo-list content-section">
         <div class="todoItem" v-for="(item, index) in filterTodos" :key="item.id">
-            <div @click="checkTodo(item.id)" class="circle" :class="{ circleActive: item.checked }">
-                <img v-show="item.checked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
+            <div class="circle circleOuter" @mouseover="hoverCircleIndex = index" @mouseout="hoverCircleIndex = -1"
+                :class="{ circleOuterHover: hoverCircleIndex === index }">
+                <div @click="checkTodo(item.id)" class="circle innerCircle"
+                    :class="{ circleActive: item.checked, circleInnerHover: hoverCircleIndex === index }">
+                    <img v-show="item.checked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
+                </div>
             </div>
-            <p @click="checkTodo(item.id)" :class="{ completed: item.checked }">{{ item.text }}</p>
-            <button class="deleteBTN" @click="deleteTodo(item.id)"><img src="../assets/icons/icon-cross.svg" alt="" /></button>
+            <p @click="checkTodo(item.id)" :class="{ completed: item.checked }" @mouseover="hoverCircleIndex = index"
+                @mouseout="hoverCircleIndex = -1">{{ item.text }} </p>
+            <button class="deleteBTN" @click="deleteTodo(item.id)"><img src="../assets/icons/icon-cross.svg"
+                    alt="" /></button>
         </div>
 
         <div class="todoItem lastTodoRow">
@@ -147,8 +161,50 @@ export default {
     cursor: pointer;
 }
 
-.circle:hover {
-    /* ToDO: linear gradient border */
+.circleOuterHover {
+    background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
+    border: 0;
+}
+
+.circle.circleInnerHover {
+    background-color: var(--color-elements);
+    height: 22px;
+    width: 22px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+}
+.circle.circleActive .circleInnerHover{
+    background-color: transparent;
+}
+
+/* .circleOuter:hover {
+    background: linear-gradient(135deg, rgba(87, 221, 255, 1) 0%, rgba(192, 88, 243, 1) 100%);
+    border: 0;
+}
+
+.innerCircle:hover {
+    background-color: var(--color-elements);
+    height: 22px;
+    width: 22px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+} */
+
+.innerCircle {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
 }
 
 .circleActive {
@@ -197,7 +253,7 @@ button:hover {
     color: var(--color-text-active)
 }
 
-.deleteBTN img:hover{
+.deleteBTN img:hover {
     filter: invert(94%) sepia(4%) saturate(493%) hue-rotate(198deg) brightness(96%) contrast(97%);
 }
 </style>
