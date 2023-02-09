@@ -88,7 +88,7 @@ export default {
                 <img v-show="item.checked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
             </div>
             <p @click="checkTodo(item.id)" :class="{ completed: item.checked }">{{ item.text }}</p>
-            <button @click="deleteTodo(item.id)"><img src="../assets/icons/icon-cross.svg" alt="" /></button>
+            <button class="deleteBTN" @click="deleteTodo(item.id)"><img src="../assets/icons/icon-cross.svg" alt="" /></button>
         </div>
 
         <div class="todoItem lastTodoRow">
@@ -195,5 +195,9 @@ button:hover {
 
 .filterActive {
     color: var(--color-text-active)
+}
+
+.deleteBTN img:hover{
+    filter: invert(94%) sepia(4%) saturate(493%) hue-rotate(198deg) brightness(96%) contrast(97%);
 }
 </style>
