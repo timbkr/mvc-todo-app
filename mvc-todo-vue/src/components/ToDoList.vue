@@ -102,7 +102,7 @@ export default {
         <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
             @keydown.esc="toggleInputChecked" placeholder="Create a new todo..">
         <!-- <img style="width: 30px; cursor: pointer" @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/icon-back.svg" alt=""> -->
-        <img style="width: 30px; cursor: pointer" @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/delete-left.png" alt="">
+        <img class="deleteInputIMG"  @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/delete-left.png" alt="">
     </div>
 
     <div class="todo-list content-section">
@@ -147,6 +147,13 @@ export default {
     margin: 1em 0;
 }
 
+.deleteInputIMG{
+    width: 30px; 
+    cursor: pointer;
+}
+.deleteInputIMG:hover{
+    opacity: 0.75;
+}
 .todoItem {
     display: flex;
     align-items: center;
