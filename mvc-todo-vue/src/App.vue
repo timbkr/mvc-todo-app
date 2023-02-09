@@ -62,5 +62,9 @@ export default{
 }
 .heading img{
   height: 100%;
+  cursor: pointer;
+}
+.heading img:hover{
+  opacity: 0.75;
 }
 </style>

@@ -37,23 +37,25 @@ export default {
                 checked: checked
             }
             this.todos.push(item)
+            this.setLocalStorageTodos()
             this.inputText = "";
         },
         deleteTodo(id: number) {
             const elem = this.todos.find(elem => elem.id === id)
             const index = this.todos.indexOf(elem!);
             this.todos.splice(index, 1)
+            this.setLocalStorageTodos()
         },
         checkTodo(id: number) {
-            console.log("CHECK");
-
             const elem = this.todos.find(elem => elem.id === id)
             const index = this.todos.indexOf(elem!);
             this.todos[index].checked = !this.todos[index].checked;
+            this.setLocalStorageTodos()
         },
         clearCompletedTodos() {
             let activeTodos = this.todos.filter(elem => elem.checked !== true)
             this.todos = activeTodos;
+            this.setLocalStorageTodos()
         },
         setFilter(mode: number) {
             this.filterActive = false;
@@ -63,7 +65,15 @@ export default {
             else if (mode === 2) this.filterCompleted = true; //'completed' 
         },
         toggleInputChecked() { this.inputChecked = !this.inputChecked },
-
+        setLocalStorageTodos() {
+            localStorage.setItem('todos', JSON.stringify(this.todos))
+        },
+        getLocalStorageTodos() {
+            if (localStorage.getItem('todos') !== null) {
+                let localTodos = JSON.parse(localStorage.getItem('todos')!)
+                this.todos = localTodos
+            }
+        }
     },
     computed: {
         filterTodos() {
@@ -73,6 +83,9 @@ export default {
                 return this.todos.filter(elem => elem.checked === true);
             else return this.todos;
         }
+    },
+    mounted() {
+        this.getLocalStorageTodos();
     }
 }
 </script>
