@@ -37,9 +37,8 @@ export default{
 <template>
   <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
   <header>
-    <div class="row container heading">
-      
-      <h1><img alt="Vue logo" class="logo" src="./assets/logo.svg" width="45" height="45"/> ToDo-App</h1>
+    <div class="row container heading">  
+      <h1>ToDo-App <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="40" height="40"/></h1>
       <img v-if="!isDarkModeActive" src="./assets/icons/icon-sun.svg" alt="" @click="toggleDarkMode">
       <img v-if="isDarkModeActive" src="./assets/icons/icon-moon.svg" alt="" @click="toggleDarkMode">
     </div>
