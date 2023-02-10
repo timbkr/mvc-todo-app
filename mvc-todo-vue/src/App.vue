@@ -38,7 +38,8 @@ export default{
   <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
   <header>
     <div class="row container heading">
-      <h1>ToDo-App</h1>
+      
+      <h1><img alt="Vue logo" class="logo" src="./assets/logo.svg" width="45" height="45"/> ToDo-App</h1>
       <img v-if="!isDarkModeActive" src="./assets/icons/icon-sun.svg" alt="" @click="toggleDarkMode">
       <img v-if="isDarkModeActive" src="./assets/icons/icon-moon.svg" alt="" @click="toggleDarkMode">
     </div>
@@ -65,9 +66,14 @@ export default{
   opacity: 0.75;
 }
 
-.logo{
+/* .logo{
   margin: 0 auto;
   width: 20%;
   height: auto;
+} */
+h1{
+  display: flex;
+    align-items: center;
+    gap: 0.6em;
 }
 </style>
