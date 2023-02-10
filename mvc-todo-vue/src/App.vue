@@ -35,7 +35,7 @@ export default{
 }
 </script>
 <template>
-  <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
   <header>
     <div class="row container heading">
       <h1>ToDo-App</h1>
@@ -63,5 +63,11 @@ export default{
 }
 .heading img:hover{
   opacity: 0.75;
+}
+
+.logo{
+  margin: 0 auto;
+  width: 20%;
+  height: auto;
 }
 </style>
