@@ -94,14 +94,15 @@ export default {
     <div class="todoItem content-section">
         <div @click="toggleInputChecked" class="circle circleOuter" tabindex="0"
             @keypress.enter="inputChecked = !inputChecked"
-            :class="{circleActive: inputChecked, circleOuterHover: inputCircleHover}"
-            @mouseover="inputCircleHover = true" @mouseout="inputCircleHover = false">
+            :class="{ circleActive: inputChecked, circleOuterHover: inputCircleHover }" @mouseover="inputCircleHover = true"
+            @mouseout="inputCircleHover = false">
             <div class="circle innerCircle" :class="{ circleInnerHover: inputCircleHover }">
                 <img v-show="inputChecked" class="checkImg" src="../assets/icons/icon-check.svg" alt="">
             </div>
         </div>
-        <input type="text" v-model="inputText" @keydown.enter="addTodo(inputText, inputChecked)"
-            @keydown.esc="toggleInputChecked" placeholder="Create a new todo..">
+        <input type="text" :value="inputText" @input="(evt: Event) => inputText = (evt.target as HTMLInputElement).value"
+            @keydown.enter="addTodo(inputText, inputChecked)" @keydown.esc="toggleInputChecked"
+            placeholder="Create a new todo..">
         <!-- <img style="width: 30px; cursor: pointer" @click="inputText = ''" @keypress.enter="inputText = ''"  tabindex="0" src="../assets/icons/icon-back.svg" alt=""> -->
         <img class="deleteInputIMG" @click="inputText = ''" @keypress.enter="inputText = ''" tabindex="0"
             src="../assets/icons/delete-left.png" alt="">
