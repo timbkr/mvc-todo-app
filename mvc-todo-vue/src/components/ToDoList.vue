@@ -7,12 +7,12 @@ export default {
             todos: [
                 {
                     id: 0,
-                    text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla, suscipit. Doloremque soluta distinctio explicabo?",
+                    text: "Einkaufen gehen",
                     checked: true
                 },
                 {
                     id: 1,
-                    text: "Test",
+                    text: "Rasen mähen",
                     checked: false
                 }
             ],
