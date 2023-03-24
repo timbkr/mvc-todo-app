@@ -149,6 +149,7 @@ export default {
 
 .todo-list {
     margin: 1em 0;
+    /* margin: 1em 0; */
 }
 
 .todoItem {
