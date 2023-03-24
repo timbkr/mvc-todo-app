@@ -140,7 +140,6 @@ export default {
 <style scoped>
 .font-size16 {
     font-size: 1rem;
-    /* font-size: 1rem; */
 }
 
 .content-section {
